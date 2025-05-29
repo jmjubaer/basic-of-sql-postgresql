@@ -39,4 +39,4 @@ ALTER Table person2
 
 -- Delete hole table data
 
-TRUNCATE Table person1;
+TRUNCATE Table student;
