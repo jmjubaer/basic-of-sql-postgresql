@@ -49,10 +49,3 @@ delete from "user"
 */
 
 
-SELECT title, username from post
-        JOIN "user" on post.user_id = "user".user_id; -- get data form foreign table.
-
-
--- we can alias name 
-SELECT title, username from post as p
-        JOIN "user" as u on p.user_id = u.user_id; -- get data form foreign table.
