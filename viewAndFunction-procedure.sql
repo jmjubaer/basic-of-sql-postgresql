@@ -43,3 +43,21 @@ $$
 $$;
 
 SELECT * from delete_employee(30);
+
+
+-------------------   PROCEDURE   ------------------------------
+
+-- procedure not return anything
+CREATE PROCEDURE delete_employee_bia_id(p_employee_id INT)
+LANGUAGE plpgsql
+AS
+$$
+    DECLARE 
+    test_var int; -- we can use variable in plpgsql.
+    BEGIN -- required
+    SELECT employee_id INTO test_var from employees WHERE employee_id = p_employee_id;
+    DELETE from employees WHERE employee_id = test_var;
+    END -- required
+$$;
+
+CALL delete_employee_bia_id(29);
