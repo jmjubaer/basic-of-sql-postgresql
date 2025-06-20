@@ -44,5 +44,19 @@ INSERT INTO employees (employee_id, employee_name, department_name, salary, hire
 
 SELECT max(salary) from employees WHERE department_name = 'HR';
 
-
+-- In three way to use subquery 
+-- 1. with select: In  there we must ensure that the subquery return one value
 SELECT * from employees WHERE salary > (SELECT max(salary) from employees WHERE department_name = 'HR')
+
+-- 2. With from clues: its can be more the one value depend on query
+SELECT department_name, sum(salary) FROM employees GROUP BY department_name;
+
+SELECT * from (SELECT department_name, sum(salary) FROM employees GROUP BY department_name) as sum_dept_salary;
+
+-- 3. With Where clues: in there the sub query can return one or multiple row depend on comparison operator. Such as, (>,<) this operator need on value but the (in) operator can mulriple row;
+
+SELECT * from employees WHERE salary > (SELECT max(salary) from employees WHERE department_name = 'HR');
+
+SELECT employee_name, salary, department_name FROM employees
+    WHERE department_name in 
+    (SELECT department_name from employees WHERE department_name ILIKE '%R%');
